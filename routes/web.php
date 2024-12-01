@@ -14,3 +14,11 @@ use Livewire\Livewire;
 
     return Route::get($base . '/vendor/livewire/livewire/dist/livewire.min.js', $handle);
 });
+
+
+
+# this is the lien
+Route::get('/index', function () {
+    return view('index');
+});
+
