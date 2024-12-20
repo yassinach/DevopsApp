@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "C:\\php;C:\\ProgramData\\ComposerSetup\\bin;${env.PATH}"
+        PATH = "C:\\php-8.2.26;C:\\ProgramData\\ComposerSetup\\bin;${env.PATH}"
     }
     stages {
         stage('Clone Repository') {
