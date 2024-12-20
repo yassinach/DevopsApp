@@ -25,7 +25,7 @@ pipeline {
                 
                 
                 
-                bat 'php artisan serve'
+                bat 'php artisan serve &'
                 
             }
         }
