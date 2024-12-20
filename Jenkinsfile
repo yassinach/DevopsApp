@@ -26,7 +26,7 @@ pipeline {
                 
                 
                 bat 'php artisan serve &'
-                
+                pkill -f 'php artisan serve'
             }
         }
 
