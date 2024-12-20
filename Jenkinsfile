@@ -13,14 +13,15 @@ pipeline {
             steps {
                 // Installer les dépendances PHP et JavaScript
                 
-                
+                sh 'composer update'
             }
         }
 
         stage('Run Migrations') {
             steps {
                 // Appliquer les migrations pour préparer la base de données
-                
+                sh 'php artisan key:generate'
+                sh 'php artisan migrate'
                 sh 'php artisan serve'
                 
             }
