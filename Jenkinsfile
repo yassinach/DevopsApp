@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone le dépôt Akaunting
-                git 'https://github.com/akaunting/akaunting.git'
+                git 'https://github.com/yassinach/DevopsApp.git'
             }
         }
 
