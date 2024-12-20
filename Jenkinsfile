@@ -23,13 +23,16 @@ pipeline {
             steps {
                 // Run Laravel server and migrations
                 bat 'start /B php artisan serve --host=127.0.0.1 --port=8000'
+                // Ajouter une pause pour s'assurer que le serveur est bien démarré
                 bat 'timeout /T 10'
+                // Appliquer les migrations
                 bat 'php artisan migrate'
             }
         }
+
         stage('Run Tests') {
             steps {
-                // Run Laravel tests
+                // Lancer les tests Laravel
                 bat 'php artisan test'
             }
         }

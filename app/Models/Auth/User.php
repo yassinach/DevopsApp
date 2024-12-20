@@ -45,6 +45,7 @@ class User extends Authenticatable implements HasLocalePreference
         'deleted_at'        => 'datetime',
     ];
 
+    
     /**
      * The attributes that should be hidden for arrays.
      *
