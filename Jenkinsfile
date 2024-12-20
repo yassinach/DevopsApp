@@ -12,7 +12,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Installer les dépendances PHP et JavaScript
-             
+                powershell '''
+                composer update
+                composer install
+                '''
             }
         }
 
