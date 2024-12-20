@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // Installer les dépendances PHP et JavaScript
                 sh 'composer install'
-                sh 'npm install && npm run dev'
+                sh 'php artisan serve'
             }
         }
 
