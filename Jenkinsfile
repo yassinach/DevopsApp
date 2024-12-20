@@ -22,7 +22,7 @@ pipeline {
                 // Démarrer le serveur Laravel en arrière-plan
                 bat 'start /B php artisan serve --host=127.0.0.1 --port=8000'
                 // Ajouter une pause pour s'assurer que le serveur est bien démarré
-                bat 'timeout /T 10'
+                bat 'ping -n 10 127.0.0.1 > nul'
                 // Appliquer les migrations
                 bat 'php artisan migrate'
             }
