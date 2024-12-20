@@ -23,7 +23,7 @@ pipeline {
             steps {
                 // Appliquer les migrations pour préparer la base de données
                 
-                bat 'php artisan key:generate'
+                
                 bat 'php artisan migrate'
                 bat 'php artisan serve'
                 
