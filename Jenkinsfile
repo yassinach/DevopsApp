@@ -37,6 +37,15 @@ pipeline {
                 bat 'php artisan test'
                 
             }
+
+        post {
+            success {
+                echo "build successfuly"
+            }
+            failure{
+                echo "error"
+            }
+        } 
         }
     }
 }
