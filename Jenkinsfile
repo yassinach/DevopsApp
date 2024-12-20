@@ -24,7 +24,7 @@ pipeline {
                 // Appliquer les migrations pour préparer la base de données
                 
                 
-                bat 'php artisan migrate'
+                
                 bat 'php artisan serve'
                 
             }
