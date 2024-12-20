@@ -24,19 +24,16 @@ pipeline {
                 // Ajouter une pause pour s'assurer que le serveur est bien démarré
                 bat 'ping -n 10 127.0.0.1 > nul'
                 // Appliquer les migrations
-                
             }
         }
+    }
 
-       post {
+    post {
         success {
             echo "Build completed successfully."
         }
         failure {
             echo "Build failed. Check logs for details."
         }
-    } 
     }
-
-    
 }
