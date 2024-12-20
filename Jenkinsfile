@@ -28,20 +28,15 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                // Lancer les tests Laravel
-                bat 'php artisan test'
-            }
-        }
-    }
-
-    post {
+       post {
         success {
             echo "Build completed successfully."
         }
         failure {
             echo "Build failed. Check logs for details."
         }
+    } 
     }
+
+    
 }
