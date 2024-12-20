@@ -12,7 +12,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Installer les dépendances PHP et JavaScript
-                sh 'composer install'
+                
                 
             }
         }
@@ -20,8 +20,9 @@ pipeline {
         stage('Run Migrations') {
             steps {
                 // Appliquer les migrations pour préparer la base de données
-                sh 'php artisan migrate'
+                
                 sh 'php artisan serve'
+                
             }
         }
 
