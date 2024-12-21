@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
+// web.php
+
+use App\Http\Controllers\Auth\login;
+
+Route::get('/login', [login::class, 'showLoginForm'])->name('login');
 
 /**
  * 'web' middleware applied to all routes
@@ -18,6 +23,9 @@ use Livewire\Livewire;
 
 
 # this is the lien
-Route::get('/index', function () {
-    return view('index.blade.php');
+Route::get('/', function () {
+    return view('index');
+});
+Route::get('/login', function () {
+    return view('create');
 });
