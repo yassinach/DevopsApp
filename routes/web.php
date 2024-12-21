@@ -19,6 +19,5 @@ use Livewire\Livewire;
 
 # this is the lien
 Route::get('/index', function () {
-    return view('index');
+    return view('index.blade.php');
 });
-
