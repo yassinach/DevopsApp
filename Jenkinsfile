@@ -33,6 +33,8 @@ pipeline {
             steps {
                 dir('terraform') {
                     script {
+                        // Vérifier que Terraform est installé et accessible
+                        bat 'terraform --version'
                         // Initialize Terraform
                         bat 'terraform init'
 
