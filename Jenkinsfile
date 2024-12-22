@@ -12,22 +12,20 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install PHP dependencies using Composer
-                bat 'composer update'
                 bat 'composer install'
             }
         }
 
         stage('Run Migrations') {
             steps {
-                // Démarrer le serveur Laravel en arrière-plan
+               // Démarrer le serveur Laravel en arrière-plan
                 bat 'start /B php artisan serve --host=127.0.0.1 --port=8000'
                 // Ajouter une pause pour s'assurer que le serveur est bien démarré
                 bat 'ping -n 10 127.0.0.1 > nul'
                 // Appliquer les migrations
+
             }
         }
-    }
-
 
        
 
@@ -60,4 +58,4 @@ pipeline {
             echo "Build failed. Check logs for details."
         }
     }
-
+}
