@@ -56,7 +56,7 @@ pipeline {
                     script {
                         // Lancer l'analyse Terrascan
                         bat 'echo %PATH%'
-                        bat 'terrascan --version' 
+                        bat 'terrascan version' 
                     }
                 }
             }
