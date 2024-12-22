@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  akaunting:
+    container_name: akaunting
+    image: docker.io/akaunting/akaunting:latest
+    build:
+      context: .
+    ports:
+      - 8000:80
+    volumes:
+      - akaunting-data:/var/www/html
+    restart: unless-stopped
+    env_file:
+      - env/run.env
+    environment:
+      - APP_NAME=${APP_NAME}
+      - APP_ENV=${APP_ENV}
+      - APP_LOCALE=${APP_LOCALE}
+      - APP_INSTALLED=${APP_INSTALLED}
+      - APP_KEY=${APP_KEY}
+      - APP_DEBUG=${APP_DEBUG}
+      - APP_SCHEDULE_TIME=${APP_SCHEDULE_TIME}
+      - APP_URL=${APP_URL}
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PREFIX=${DB_PREFIX}
+      - FIREWALL_ENABLED=${FIREWALL_ENABLED}
+      - MODEL_CACHE_ENABLED=${MODEL_CACHE_ENABLED}
+      - DEBUGBAR_EDITOR=${DEBUGBAR_EDITOR}
+      - IGNITION_EDITOR=${IGNITION_EDITOR}
+    depends_on:
+      - akaunting-db
+
+  akaunting-db:
+    container_name: akaunting-db
+    image: mysql:latest
+    ports:
+      - 8033:3306
+    volumes:
+      - akaunting-db:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD} # Using DB_PASSWORD from .env
+      - MYSQL_DATABASE=${DB_DATABASE}      # Using DB_DATABASE from .env
+      - MYSQL_USER=${DB_USERNAME}          # Using DB_USERNAME from .env
+      - MYSQL_PASSWORD=${DB_PASSWORD}      # Same as root password in this case
+    env_file:
+      - env/db.env
+
+volumes:
+  akaunting-data:
+  akaunting-db:
