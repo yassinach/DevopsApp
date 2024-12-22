@@ -55,7 +55,8 @@ pipeline {
                 dir('terraform') {
                     script {
                         // Lancer l'analyse Terrascan
-                        bat 'echo %PATH%' 
+                        bat 'echo %PATH%'
+                        bat 'terrascan --version' 
                     }
                 }
             }
