@@ -50,6 +50,16 @@ pipeline {
                 }
             }
         }
+        stage('Run Terrascan') {
+            steps {
+                dir('terraform') {
+                    script {
+                        // Lancer l'analyse Terrascan
+                        bat 'terrascan scan -t aws'  // Remplacer "aws" par le provider que tu utilises, ex: azure, gcp, etc.
+                    }
+                }
+            }
+        }
     }
 
     post {
