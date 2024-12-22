@@ -12,7 +12,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install PHP dependencies using Composer
-                bat 'composer update'
+                // bat 'composer update'
                 bat 'composer install'
             }
         }
