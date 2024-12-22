@@ -55,7 +55,7 @@ pipeline {
                 dir('terraform') {
                     script {
                         // Lancer l'analyse Terrascan
-                        bat 'terrascan scan -t aws'  // Remplacer "aws" par le provider que tu utilises, ex: azure, gcp, etc.
+                        bat 'docker run --rm -v %CD%:/workspace accurics/terrascan scan -t terraform'  // Remplacer "aws" par le provider que tu utilises, ex: azure, gcp, etc.
                     }
                 }
             }
