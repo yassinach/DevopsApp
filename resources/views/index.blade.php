@@ -18,6 +18,9 @@
             <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     Se connecter
 </a>
+<a href="{{ route('regis') }}" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded ml-3">
+    Créer un compte
+</a>
             
         </div>
     </x-slot>
