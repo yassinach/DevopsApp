@@ -1,0 +1,47 @@
+# Akaunting Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akaunting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akaunting
+  template:
+    metadata:
+      labels:
+        app: akaunting
+    spec:
+      containers:
+      - name: akaunting
+        image: akaunting/akaunting:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_HOST
+          value: "mysql"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_DATABASE
+          value: "akaunting"
+        - name: DB_USERNAME
+          value: "akaunting_user"
+        - name: DB_PASSWORD
+          value: "akaunting_password"
+
+---
+# Akaunting Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: akaunting-service
+spec:
+  selector:
+    app: akaunting
+  ports:
+    - protocol: TCP
+      port: 80            # Internal port Akaunting listens to
+      targetPort: 80      # The container's port
+      nodePort: 30008     # External port to access Akaunting
+  type: NodePort
