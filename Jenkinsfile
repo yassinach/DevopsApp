@@ -55,7 +55,7 @@ pipeline {
                 dir('terraform') {
                     script {
                         // Lancer l'analyse Terrascan
-                        bat 'terrascan version' 
+                        bat 'C:\Users\anoua\Downloads\terrascan_1.19.9_Windows_i386 scan -t aws' 
                     }
                 }
             }
