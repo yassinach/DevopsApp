@@ -67,7 +67,7 @@ pipeline {
             steps {
                 script {
                     // Define the Kubernetes context
-                    def kubeConfigPath = 'kubernetes' // Adjust the path to your kubeconfig
+                    def kubeConfigPath = 'C:\\Users\\anoua\\.kube\\config' // Adjust the path to your kubeconfig
 
                     // Apply Kubernetes configurations
                     withEnv(["KUBECONFIG=${kubeConfigPath}"]) {
