@@ -67,13 +67,13 @@ pipeline {
             steps {
                 script {
                     // Define the Kubernetes context
-                    def kubeConfigPath = 'C:\\Users\\anoua\\.kube\\config' // Adjust the path to your kubeconfig
+                    def kubeConfigPath = 'KUBECONFIG=C:\\Users\\anoua\\.kube\\config' // Adjust the path to your kubeconfig
 
                     // Apply Kubernetes configurations
                     withEnv(["KUBECONFIG=${kubeConfigPath}"]) {
                         // Replace 'kubectl apply' command to use your YAML deployment file
-                        bat 'kubectl apply -f akaunting-deployment.yaml'
-                        bat 'kubectl apply -f mysql-deployment.yaml'
+                        bat 'kubectl apply -f kubernetes/akaunting-deployment.yaml'
+                        bat 'kubectl apply -f kubernetes/mysql-deployment.yaml'
 
                         // Verify the deployment
                         bat 'kubectl get pods'
