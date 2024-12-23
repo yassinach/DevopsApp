@@ -32,7 +32,7 @@ pipeline {
             }
         }
     }
-    
+
      stage('Run Tests') {
             steps {
                 // Lancer les tests Laravel
@@ -67,4 +67,3 @@ pipeline {
             echo "Build failed. Check logs for details."
         }
     }
-}
