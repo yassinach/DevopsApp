@@ -63,6 +63,25 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Define the Kubernetes context
+                    def kubeConfigPath = '/path/to/your/kubeconfig' // Adjust the path to your kubeconfig
+
+                    // Apply Kubernetes configurations
+                    withEnv(["KUBECONFIG=${kubeConfigPath}"]) {
+                        // Replace 'kubectl apply' command to use your YAML deployment file
+                        bat 'kubectl apply -f akaunting-deployment.yaml'
+                        bat 'kubectl apply -f mysql-deployment.yaml'
+
+                        // Verify the deployment
+                        bat 'kubectl get pods'
+                        bat 'kubectl get services'
+                    }
+                }
+            }
+        }
     }
 
     post {
