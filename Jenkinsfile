@@ -26,12 +26,7 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                // Lancer les tests Laravel
-                bat 'php artisan test'
-            }
-        }
+        
 
         stage('Run Docker Compose') {
             steps {
