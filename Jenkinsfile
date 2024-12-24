@@ -18,16 +18,15 @@ pipeline {
 
         stage('Run Migrations') {
             steps {
-               // Démarrer le serveur Laravel en arrière-plan
+                // Démarrer le serveur Laravel en arrière-plan
                 bat 'start /B php artisan serve --host=127.0.0.1 --port=8000'
                 // Ajouter une pause pour s'assurer que le serveur est bien démarré
                 bat 'ping -n 10 127.0.0.1 > nul'
                 // Appliquer les migrations
-
+                bat 'php artisan migrate'
             }
         }
-        }
-    
+
         stage('Run Tests') {
             steps {
                 // Lancer les tests Laravel
@@ -50,7 +49,6 @@ pipeline {
             }
         }
 
-        
         stage('Run Terraform') {
             steps {
                 dir('terraform') {
@@ -72,20 +70,19 @@ pipeline {
                 }
             }
         }
-       
+
         stage('Run Terrascan') {
             steps {
                 dir('terraform') {
                     script {
                         // Lancer l'analyse Terrascan
-                        
                         bat 'terrascan version' 
-                        bat 'terrascan scan scan -i terraform'
-                        
+                        bat 'terrascan scan -i terraform'
                     }
                 }
             }
         }
+
         stage('Deploy to Kubernetes') {
             steps {
                 script {
@@ -115,3 +112,4 @@ pipeline {
             echo "Build failed. Check logs for details."
         }
     }
+}
