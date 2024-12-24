@@ -28,14 +28,14 @@ pipeline {
         }
     }
     
-     stage('Run Tests') {
+        stage('Run Tests') {
             steps {
                 // Lancer les tests Laravel
                 bat 'php artisan test'
             }
         }
 
-     stage('Run Docker Compose') {
+        stage('Run Docker Compose') {
             steps {
                 script {
                     // Ensure Docker is running
@@ -72,20 +72,7 @@ pipeline {
                 }
             }
         }
-        stage('Run Docker Compose') {
-            steps {
-                script {
-                    // Ensure Docker is running
-                    bat 'docker --version'
-
-                    // Start Docker Compose
-                    bat 'docker-compose up -d'
-
-                    // Verify Docker containers are running
-                    bat 'docker ps'
-                }
-            }
-        }
+       
         stage('Run Terrascan') {
             steps {
                 dir('terraform') {
