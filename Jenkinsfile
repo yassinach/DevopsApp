@@ -60,9 +60,29 @@ pipeline {
                 dir('terraform') {
                     script {
                         // Lancer l'analyse Terrascan
-                        bat 'echo %PATH%'
+                        
                         bat 'terrascan version' 
-                        bat 'terrascan scan -t aws'
+                        bat 'terrascan scan scan -i terraform'
+                        
+                    }
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Define the Kubernetes context
+                    def kubeConfigPath = 'C:\\Users\\anoua\\.kube\\config' // Adjust the path to your kubeconfig
+
+                    // Apply Kubernetes configurations
+                    withEnv(["KUBECONFIG=${kubeConfigPath}"]) {
+                        // Replace 'kubectl apply' command to use your YAML deployment file
+                        bat 'kubectl apply -f kubernetes/akaunting-deployment.yaml'
+                        bat 'kubectl apply -f kubernetes/mysql-deployment.yaml'
+
+                        // Verify the deployment
+                        bat 'kubectl get pods'
+                        bat 'kubectl get services'
                     }
                 }
             }
